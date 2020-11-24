@@ -19,11 +19,9 @@ stage("Sync") {
   retry(5) {
   try {
   openshift.withCluster() {
-    openshift.withProject("") {
       openshift.verbose()
-      openshift.raw("apply","-Rf","non-prod","")
+      openshift.raw("apply","-n","''","-Rf","non-prod"
       }
-    }
   } catch(Exception e) {
       sleep 5
       error "apply failed"
