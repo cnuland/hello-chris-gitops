@@ -12,10 +12,14 @@ pipeline {
 stages {
 stage("Sync") {
   steps {
+  script {
+  sh """
+  ls -R 
+  """
   retry(5) {
   try {
   openshift.withCluster() {
-    openshift.withProject() {
+    openshift.withProject("") {
       openshift.verbose()
       openshift.raw("apply","-Rf","non-prod","")
       }
@@ -25,6 +29,7 @@ stage("Sync") {
       error "apply failed"
     }
   }
+}
 }
 }
 }
