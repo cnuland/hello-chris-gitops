@@ -20,7 +20,8 @@ stage("Sync") {
   try {
   openshift.withCluster() {
     openshift.withProject("") {
-      openshift.raw("apply","-Rf","non-prod","--loglevel=8")
+      openshift.verbose()
+      openshift.raw("apply","-Rf","non-prod","")
       }
     }
   } catch(Exception e) {
