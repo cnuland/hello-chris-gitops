@@ -20,7 +20,7 @@ stage("Sync") {
   try {
   openshift.withCluster() {
       openshift.verbose()
-      openshift.raw("apply","-n","''","-Rf","non-prod"
+      openshift.raw("apply","-n","''","-Rf","non-prod")
       }
   } catch(Exception e) {
       sleep 5
