@@ -2,6 +2,7 @@ apiVersion: build.openshift.io/v1
 kind: BuildConfig 
 metadata: 
     name: hello-chris-pipeline 
+    namespace: test
 spec: 
     nodeSelector: null 
     output: {} 
@@ -10,9 +11,9 @@ spec:
     runPolicy: Serial 
     source: 
         git: 
-            uri: 'https://github.com/cnuland/hello-chris' 
+            uri: 'https://github.com/cnuland/hello-chris-gitops' 
         type: Git 
     strategy: 
         jenkinsPipelineStrategy: 
             jenkinsfilePath: Jenkinsfile 
-        type: JenkinsPipeline triggers: []
+        type: JenkinsPipeline

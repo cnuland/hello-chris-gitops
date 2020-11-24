@@ -4,6 +4,7 @@ metadata:
   labels:
     app: hello-chris
   name: hello-chris-build
+  namespace: example-app
 spec:
   output:
     to:
