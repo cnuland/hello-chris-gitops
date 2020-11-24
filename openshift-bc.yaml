@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: hello-chris
+  name: hello-chris-build
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: hello-chris:latest
+  resources: {}
+  source:
+    binary: {}
+    type: Binary
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: centos-7-node10:latest
