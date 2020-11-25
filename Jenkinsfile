@@ -9,26 +9,26 @@ pipeline {
   agent {
     label 'master'
   }
-stages {
-stage("Sync") {
-  steps {
-  script {
-  sh """
-  ls -R 
-  """
-  retry(5) {
-  try {
-  openshift.withCluster() {
-      openshift.verbose()
-      openshift.raw("apply","-n","''","-Rf","non-prod")
+  
+  stages {
+    stage("Sync") {
+      steps {
+        script {
+          sh """
+          ls -R 
+          """
+        retry(5) {
+          try {
+            openshift.withCluster() {
+              openshift.raw("apply","-n","''","-Rf","non-prod")
+            }
+          } catch(Exception e) {
+              sleep 5
+              error "apply failed"
+            }
+          }
+        }
       }
-  } catch(Exception e) {
-      sleep 5
-      error "apply failed"
     }
   }
-}
-}
-}
-}
 }
